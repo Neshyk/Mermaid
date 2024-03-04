@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  title: Mermaid Generator Service
+  description: This is a Mermaid Generator Service
+  contact:
+    email: ineshyk@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/iNeshyk/mermaid/1.0.0
+  description: Mermaid Generator Server
+tags:
+- name: developers
+  description: Operations available to regular developers
+paths:
+  /generate:
+    get:
+      tags:
+      - developers
+      summary: generate diagram or chart image by Mermaid
+      description: |
+        By passing in the appropriate options, you can generate diagram or chart in png format
+      operationId: generate
+      parameters:
+      - name: diagram
+        in: query
+        description: Text definition of the diagram
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: The type of result (png or svg)
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: return generated *.png image diagram or chart
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+                x-content-type: image/png
+        "400":
+          description: bad input parameter
+      x-swagger-router-controller: Developers
+    post:
+      tags:
+      - developers
+      summary: generate diagram or chart image by Mermaid
+      description: |
+        By passing in the appropriate options, you can generate diagram or chart in png format
+      operationId: generateByPost
+      parameters:
+      - name: type
+        in: query
+        description: The type of result (png or svg)
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        description: Markdown-inspired text definitions to create and modify diagrams
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: |
+                flowchart TD
+                  A[Christmas] -->|Get money| B(Go shopping)
+                  B --> C{Let me think}
+                  C -->|One| D[Laptop]
+                  C -->|Two| E[iPhone]
+                  C -->|Three| F[fa:fa-car Car]
+      responses:
+        "200":
+          description: return generated *.png image diagram or chart
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+                x-content-type: image/png
+        "400":
+          description: bad input parameter
+      x-swagger-router-controller: Developers
+  /generate/src:
+    get:
+      tags:
+      - developers
+      summary: generate diagram or chart image by Mermaid and host it with public
+        URL
+      description: |
+        By passing in the appropriate options, you can generate diagram or chart in png or svg format
+      operationId: generateSrc
+      parameters:
+      - name: diagram
+        in: query
+        description: Text definition of the diagram
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: The type of result (png or svg)
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: return public URL of generated diagram or chart
+          content:
+            image/png:
+              schema:
+                type: string
+                x-content-type: image/png
+        "400":
+          description: bad input parameter
+      x-swagger-router-controller: Developers
+    post:
+      tags:
+      - developers
+      summary: generate diagram or chart image by Mermaid and host it with public
+        URL
+      description: |
+        By passing in the appropriate options, you can generate diagram or chart in png format
+      operationId: generateByPostSrc
+      parameters:
+      - name: type
+        in: query
+        description: The type of result (png or svg)
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        description: Markdown-inspired text definitions to create and modify diagrams
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: |
+                flowchart TD
+                  A[Christmas] -->|Get money| B(Go shopping)
+                  B --> C{Let me think}
+                  C -->|One| D[Laptop]
+                  C -->|Two| E[iPhone]
+                  C -->|Three| F[fa:fa-car Car]
+      responses:
+        "200":
+          description: return public URL of generated diagram or chart
+          content:
+            image/png:
+              schema:
+                type: string
+                x-content-type: image/png
+        "400":
+          description: bad input parameter
+      x-swagger-router-controller: Developers
+components: {}
