@@ -11,7 +11,14 @@ class AzureBlobService {
         try {
             const containerClient = this.blobServiceClient.getContainerClient(this.containerName);
             const blobClient = containerClient.getBlockBlobClient(fileName);
-            await blobClient.uploadData(diagramBuffer);
+            const contentType = "image/png";
+            const uploadOptions = {
+                blobHTTPHeaders: {
+                    blobContentType: contentType
+                }
+            };
+
+            await blobClient.uploadData(diagramBuffer,uploadOptions);
             return blobClient.url;
         } catch (error) {
             console.error("Failed to upload stream to blob", error);
