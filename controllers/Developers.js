@@ -6,7 +6,10 @@ var Developers = require('../service/DevelopersService');
 module.exports.generate = function generate (req, res, next, diagram, type) {
   Developers.generate(diagram, type)
     .then(function (response) {
-      utils.writeJson(res, response);
+      // Set the Content-Type header to indicate a binary file
+      res.setHeader('Content-Type', 'image/png');
+      // Write the binary data to the response object
+      res.end(Buffer.from(response), 'binary');
     })
     .catch(function (response) {
       utils.writeJson(res, response);
@@ -16,7 +19,10 @@ module.exports.generate = function generate (req, res, next, diagram, type) {
 module.exports.generateByPost = function generateByPost (req, res, next, body, type) {
   Developers.generateByPost(body, type)
     .then(function (response) {
-      utils.writeJson(res, response);
+      // Set the Content-Type header to indicate a binary file
+      res.setHeader('Content-Type', 'image/png');
+      // Write the binary data to the response object
+      res.end(Buffer.from(response), 'binary');
     })
     .catch(function (response) {
       utils.writeJson(res, response);

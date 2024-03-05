@@ -8,6 +8,7 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/iNeshyk/mermaid/1.0.0
   description: Mermaid Generator Server
+- url: http://localhost:8080
 tags:
 - name: developers
   description: Operations available to regular developers
