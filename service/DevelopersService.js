@@ -72,7 +72,8 @@ exports.generateByPostSrc = function(body,type) {
  * type String The type of result (png or svg)
  * returns String
  **/
-exports.generateSrc = function(diagram,type) {
+exports.
+generateSrc = function(diagram,type) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = "";
