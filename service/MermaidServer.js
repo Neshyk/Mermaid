@@ -1,10 +1,11 @@
 const { BlobServiceClient } = require("@azure/storage-blob");
 const fetch = require("node-fetch");
 const stream = require("stream");
+const config = require('dotenv').config();
 
-const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.AzureWebJobsStorage);
-const containerName = "your-container-name";
-const mermaidServer = "4.249.204.61"
+const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE_CONNECTION_STRING);
+const containerName = process.env.CONTAINER_NAME;
+const mermaidServer = process.env.MERMAID_SERVER;
 const mermaidServerUrl = "https://"+mermaidServer+"/generate";
 
 module.exports = async function (context, req) {
