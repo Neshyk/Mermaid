@@ -4,7 +4,8 @@ const stream = require("stream");
 
 const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.AzureWebJobsStorage);
 const containerName = "your-container-name";
-const mermaidServerUrl = "https://your-mermaid-server.com/generate";
+const mermaidServer = "4.249.204.61"
+const mermaidServerUrl = "https://"+mermaidServer+"/generate";
 
 module.exports = async function (context, req) {
     try {
