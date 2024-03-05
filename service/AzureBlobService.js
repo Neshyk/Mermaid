@@ -1,5 +1,5 @@
 const { BlobServiceClient } = require("@azure/storage-blob");
-const config = require('dotenv').config(); // Assuming you're using dotenv to manage environment variables
+const config = require('dotenv').config(); 
 
 class AzureBlobService {
     constructor() {

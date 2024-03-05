@@ -6,9 +6,8 @@ info:
     email: ineshyk@gmail.com
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/iNeshyk/mermaid/1.0.0
-  description: Mermaid Generator Server
-- url: http://localhost:8080
+- url: http://mermaidgeneratorservice.azurewebsites.net
+  description: "Mermaid Generator Server."
 tags:
 - name: developers
   description: Operations available to regular developers
@@ -17,27 +16,30 @@ paths:
     get:
       tags:
       - developers
-      summary: generate diagram or chart image by Mermaid
+      summary: generate diagram or chart image by Mermaid in png format
       description: |
         By passing in the appropriate options, you can generate diagram or chart in png format
       operationId: generate
       parameters:
       - name: diagram
         in: query
-        description: Text definition of the diagram
+        description: "Text definition of the diagram is detailed in the syntax provided here: https://mermaid.js.org/intro/syntax-reference.html"
         required: true
         style: form
         explode: true
         schema:
           type: string
+          example: graph%20LR%0A%20%20%20%20A%5BSquare%20Rect%5D%20--%20Link%20text%20--%3E%20B%28%28Circle%29%29%0A%20%20%20%20A%20--%3E%20C%28Round%20Rect%29%0A%20%20%20%20B%20--%3E%20D%7BRhombus%7D%0A%20%20%20%20C%20--%3E%20D
       - name: type
         in: query
-        description: The type of result (png or svg)
+        description: The type of image (png only)
         required: true
         style: form
         explode: true
         schema:
           type: string
+          example: png
+          default: png
       responses:
         "200":
           description: return generated *.png image diagram or chart
@@ -60,12 +62,14 @@ paths:
       parameters:
       - name: type
         in: query
-        description: The type of result (png or svg)
+        description: The type of image (png only)
         required: true
         style: form
         explode: true
         schema:
           type: string
+          example: png
+          default: png 
       requestBody:
         description: Markdown-inspired text definitions to create and modify diagrams
         content:
@@ -98,25 +102,28 @@ paths:
       summary: generate diagram or chart image by Mermaid and host it with public
         URL
       description: |
-        By passing in the appropriate options, you can generate diagram or chart in png or svg format
+        By passing in the appropriate options, you can generate diagram or chart in png format
       operationId: generateSrc
       parameters:
       - name: diagram
         in: query
-        description: Text definition of the diagram
+        description: "Text definition of the diagram is detailed in the syntax provided here: https://mermaid.js.org/intro/syntax-reference.html"
         required: true
         style: form
         explode: true
         schema:
           type: string
+          example: graph%20LR%0A%20%20%20%20A%5BSquare%20Rect%5D%20--%20Link%20text%20--%3E%20B%28%28Circle%29%29%0A%20%20%20%20A%20--%3E%20C%28Round%20Rect%29%0A%20%20%20%20B%20--%3E%20D%7BRhombus%7D%0A%20%20%20%20C%20--%3E%20D
       - name: type
         in: query
-        description: The type of result (png or svg)
+        description: The type of image (png only)
         required: true
         style: form
         explode: true
         schema:
           type: string
+          example: png
+          default: png
       responses:
         "200":
           description: return public URL of generated diagram or chart
@@ -139,12 +146,14 @@ paths:
       parameters:
       - name: type
         in: query
-        description: The type of result (png or svg)
+        description: The type of image (png only)
         required: true
         style: form
         explode: true
         schema:
           type: string
+          example: png
+          default: png
       requestBody:
         description: Markdown-inspired text definitions to create and modify diagrams
         content:

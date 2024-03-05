@@ -1,10 +1,11 @@
 'use strict';
+const config = require('dotenv').config(); 
 
 var path = require('path');
 var http = require('http');
 
 var oas3Tools = require('oas3-tools');
-var serverPort = 8080;
+var serverPort = process.env.SERVER_PORT;
 
 // swaggerRouter configuration
 var options = {
